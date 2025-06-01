@@ -1,0 +1,54 @@
+R1>
+R1>en
+R1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ip route 172.31.0.0 255.255.255.0 172.31.1.193
+R1(config)#ip route 172.31.1.196 255.255.255.252 172.31.1.193
+R1(config)#ip route 172.31.1.128 255.255.255.192 172.31.1.193
+R1(config)#
+
+
+Cisco Packet Tracer PC Command Line 1.0
+C:\>ping 172.21.0.254
+
+Pinging 172.21.0.254 with 32 bytes of data:
+
+Reply from 172.31.1.1: Destination host unreachable.
+Reply from 172.31.1.1: Destination host unreachable.
+Reply from 172.31.1.1: Destination host unreachable.
+Reply from 172.31.1.1: Destination host unreachable.
+
+Ping statistics for 172.21.0.254:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 172.31.1.190
+
+Pinging 172.31.1.190 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 172.31.1.190:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>
+
+
+R2>en
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#ip route 172.31.1.0 255.255.255.128 se0/0/0
+%Default route without gateway, if not a point-to-point interface, may impact performance
+R2(config)#ip route 172.31.1.128 255.255.255.192 se0/0/1
+%Default route without gateway, if not a point-to-point interface, may impact performance
+R2(config)#
+
+
+R3>en
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#ip route 0.0.0.0 0.0.0.0 se0/0/1
+%Default route without gateway, if not a point-to-point interface, may impact performance
+R3(config)#
